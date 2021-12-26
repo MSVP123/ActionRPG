@@ -369,12 +369,12 @@ blend_mode = 1
 states/Attack/node = SubResource( 35 )
 states/Attack/position = Vector2( 268, 306 )
 states/Idle/node = SubResource( 18 )
-states/Idle/position = Vector2( 150, 521 )
+states/Idle/position = Vector2( 149, 521 )
 states/Run/node = SubResource( 23 )
 states/Run/position = Vector2( 489, 521 )
 transitions = [ "Idle", "Run", SubResource( 24 ), "Run", "Idle", SubResource( 25 ), "Idle", "Attack", SubResource( 36 ), "Attack", "Idle", SubResource( 37 ), "Attack", "Run", SubResource( 38 ), "Run", "Attack", SubResource( 39 ) ]
 start_node = "Idle"
-graph_offset = Vector2( -279, 262 )
+graph_offset = Vector2( -482, 428 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=13]
 
