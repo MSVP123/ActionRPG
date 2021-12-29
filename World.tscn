@@ -560,6 +560,7 @@ __meta__ = {
 }
 
 [node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 8, 0 )
 texture = ExtResource( 5 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 1280, 1280 )
@@ -576,7 +577,7 @@ tile_set = SubResource( 2 )
 cell_size = Vector2( 32, 32 )
 collision_mask = 0
 format = 1
-tile_data = PoolIntArray( 6, 0, 196608, 7, 0, 6, 8, 0, 1, 9, 0, 2, 65536, 0, 3, 65543, 0, 131072, 65544, 0, 65542, 65545, 0, 65538, 131072, 0, 131076, 131073, 0, 5, 131074, 0, 196610, 131080, 0, 131072, 131081, 0, 65543, 196608, 0, 65540, 196609, 0, 131074, 196617, 0, 131075, 262144, 0, 131075 )
+tile_data = PoolIntArray( 6, 0, 196608, 7, 0, 6, 8, 0, 1, 9, 0, 2, 65536, 0, 3, 65543, 0, 131072, 65544, 0, 65542, 65545, 0, 65538, 131072, 0, 131076, 131073, 0, 5, 131074, 0, 196610, 131080, 0, 131072, 131081, 0, 65543, 196608, 0, 65540, 196609, 0, 131074, 196617, 0, 131075, 262144, 0, 131075, 262149, 0, 0, 262150, 0, 2, 327684, 0, 0, 327685, 0, 131078, 327686, 0, 131077, 327687, 0, 2, 393219, 0, 0, 393220, 0, 131078, 393221, 0, 65537, 393222, 0, 65537, 393223, 0, 131077, 393224, 0, 2, 458754, 0, 196608, 458755, 0, 196614, 458756, 0, 131073, 458757, 0, 131073, 458758, 0, 131073, 458759, 0, 131073, 458760, 0, 131074 )
 
 [node name="YSort" type="YSort" parent="."]
 
@@ -585,69 +586,89 @@ position = Vector2( 120, 40 )
 
 [node name="Greenery" type="YSort" parent="YSort"]
 
-[node name="Grass17" type="YSort" parent="YSort/Greenery"]
+[node name="Grass" type="YSort" parent="YSort/Greenery"]
 
-[node name="Grass" parent="YSort/Greenery/Grass17" instance=ExtResource( 6 )]
+[node name="Grass" parent="YSort/Greenery/Grass" instance=ExtResource( 6 )]
 position = Vector2( 128, 144 )
 
-[node name="Grass2" parent="YSort/Greenery/Grass17" instance=ExtResource( 6 )]
+[node name="Grass2" parent="YSort/Greenery/Grass" instance=ExtResource( 6 )]
 position = Vector2( 144, 144 )
 
-[node name="Grass3" parent="YSort/Greenery/Grass17" instance=ExtResource( 6 )]
+[node name="Grass3" parent="YSort/Greenery/Grass" instance=ExtResource( 6 )]
 position = Vector2( 144, 128 )
 
-[node name="Grass4" parent="YSort/Greenery/Grass17" instance=ExtResource( 6 )]
+[node name="Grass4" parent="YSort/Greenery/Grass" instance=ExtResource( 6 )]
 position = Vector2( 96, 80 )
 
-[node name="Grass5" parent="YSort/Greenery/Grass17" instance=ExtResource( 6 )]
+[node name="Grass5" parent="YSort/Greenery/Grass" instance=ExtResource( 6 )]
 position = Vector2( 96, 96 )
 
-[node name="Grass6" parent="YSort/Greenery/Grass17" instance=ExtResource( 6 )]
+[node name="Grass6" parent="YSort/Greenery/Grass" instance=ExtResource( 6 )]
 position = Vector2( 80, 96 )
 
-[node name="Grass7" parent="YSort/Greenery/Grass17" instance=ExtResource( 6 )]
+[node name="Grass7" parent="YSort/Greenery/Grass" instance=ExtResource( 6 )]
 position = Vector2( 64, 96 )
 
-[node name="Grass8" parent="YSort/Greenery/Grass17" instance=ExtResource( 6 )]
+[node name="Grass17" parent="YSort/Greenery/Grass" instance=ExtResource( 6 )]
+position = Vector2( 168, 128 )
+hitable = false
+
+[node name="Grass20" parent="YSort/Greenery/Grass" instance=ExtResource( 6 )]
+position = Vector2( 168, 144 )
+hitable = false
+
+[node name="Grass21" parent="YSort/Greenery/Grass" instance=ExtResource( 6 )]
+position = Vector2( 152, 160 )
+hitable = false
+
+[node name="Grass22" parent="YSort/Greenery/Grass" instance=ExtResource( 6 )]
+position = Vector2( 136, 160 )
+hitable = false
+
+[node name="Grass8" parent="YSort/Greenery/Grass" instance=ExtResource( 6 )]
 position = Vector2( 64, 112 )
 
-[node name="Grass9" parent="YSort/Greenery/Grass17" instance=ExtResource( 6 )]
+[node name="Grass9" parent="YSort/Greenery/Grass" instance=ExtResource( 6 )]
 position = Vector2( 80, 112 )
 
-[node name="Grass10" parent="YSort/Greenery/Grass17" instance=ExtResource( 6 )]
+[node name="Grass10" parent="YSort/Greenery/Grass" instance=ExtResource( 6 )]
 position = Vector2( 208, 32 )
 
-[node name="Grass11" parent="YSort/Greenery/Grass17" instance=ExtResource( 6 )]
+[node name="Grass11" parent="YSort/Greenery/Grass" instance=ExtResource( 6 )]
 position = Vector2( 192, 32 )
 
-[node name="Grass12" parent="YSort/Greenery/Grass17" instance=ExtResource( 6 )]
+[node name="Grass12" parent="YSort/Greenery/Grass" instance=ExtResource( 6 )]
 position = Vector2( 40, 96 )
+hitable = false
 
-[node name="Grass13" parent="YSort/Greenery/Grass17" instance=ExtResource( 6 )]
+[node name="Grass13" parent="YSort/Greenery/Grass" instance=ExtResource( 6 )]
 position = Vector2( 24, 96 )
+hitable = false
 
-[node name="Grass14" parent="YSort/Greenery/Grass17" instance=ExtResource( 6 )]
+[node name="Grass14" parent="YSort/Greenery/Grass" instance=ExtResource( 6 )]
 position = Vector2( 24, 80 )
+hitable = false
 
-[node name="Grass15" parent="YSort/Greenery/Grass17" instance=ExtResource( 6 )]
+[node name="Grass15" parent="YSort/Greenery/Grass" instance=ExtResource( 6 )]
 position = Vector2( 40, 80 )
+hitable = false
 
-[node name="Grass16" parent="YSort/Greenery/Grass17" instance=ExtResource( 6 )]
+[node name="Grass16" parent="YSort/Greenery/Grass" instance=ExtResource( 6 )]
 position = Vector2( 40, 64 )
+hitable = false
 
-[node name="Grass18" parent="YSort/Greenery/Grass17" instance=ExtResource( 6 )]
+[node name="Grass18" parent="YSort/Greenery/Grass" instance=ExtResource( 6 )]
 position = Vector2( 56, 64 )
+hitable = false
 
-[node name="Grass19" parent="YSort/Greenery/Grass17" instance=ExtResource( 6 )]
+[node name="Grass19" parent="YSort/Greenery/Grass" instance=ExtResource( 6 )]
 position = Vector2( 72, 64 )
+hitable = false
 
 [node name="bush" type="YSort" parent="YSort/Greenery"]
 
 [node name="Bush" parent="YSort/Greenery/bush" instance=ExtResource( 3 )]
 position = Vector2( 240, 80 )
-
-[node name="Bush2" parent="YSort/Greenery/bush" instance=ExtResource( 3 )]
-position = Vector2( 208, 144 )
 
 [node name="Bush3" parent="YSort/Greenery/bush" instance=ExtResource( 3 )]
 position = Vector2( 48, 48 )

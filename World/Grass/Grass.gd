@@ -1,5 +1,7 @@
 extends Node2D
 
+export var hitable = true
+
 func create_grass_effect():
 	var GrassEffect = load("res://Effects/Grass/grassEffect.tscn")
 	var grassEffect = GrassEffect.instance()
@@ -9,5 +11,6 @@ func create_grass_effect():
 	queue_free()
 
 func _on_hurtBox_area_entered(area):
-	create_grass_effect()
-	queue_free()
+	if hitable:
+		create_grass_effect()
+		queue_free()
