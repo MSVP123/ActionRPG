@@ -6,5 +6,5 @@ func _physics_process(delta):
 	knockBack = knockBack.move_toward(Vector2.ZERO, 250 * delta)
 	knockBack = move_and_slide(knockBack)
 
-func _on_hurtBox_area_entered(_area):
-	knockBack = Vector2.RIGHT * 120
+func _on_hurtBox_area_entered(area):
+	knockBack = area.knockback_vector * 120
