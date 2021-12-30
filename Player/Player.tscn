@@ -1,9 +1,8 @@
-[gd_scene load_steps=56 format=2]
+[gd_scene load_steps=55 format=2]
 
 [ext_resource path="res://Player/player.gd" type="Script" id=1]
 [ext_resource path="res://Player/Player.png" type="Texture" id=2]
 [ext_resource path="res://Overlap/hitBox.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Player/swordHitBox.gd" type="Script" id=4]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 4.0
@@ -688,7 +687,6 @@ __meta__ = {
 [node name="SwordHitBox" parent="HitBoxPiviot" instance=ExtResource( 3 )]
 position = Vector2( 15, -17 )
 collision_mask = 16
-script = ExtResource( 4 )
 
 [node name="CollisionShape2D" parent="HitBoxPiviot/SwordHitBox" index="0"]
 position = Vector2( -4, 15 )
