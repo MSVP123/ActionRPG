@@ -7,6 +7,7 @@ const FRICTION = 500
 
 var velocity = Vector2.ZERO
 var roll_vector = Vector2.DOWN
+var stats = PlayerStats
 var state = MOVE
 enum { MOVE, ROLL, ATTACK
 }
@@ -16,8 +17,10 @@ onready var animation_tree = $AnimationTree
 onready var animation_state = $AnimationTree.get("parameters/playback")
 
 onready var swordHitBox = $HitBoxPiviot/SwordHitBox
+onready var hurtBox = $hurtBox
 
 func _ready():
+	stats.connect("no_health", self, "queue_free")
 	animation_tree.active = true
 	swordHitBox.knockback_vector = roll_vector
 
@@ -64,14 +67,23 @@ func move_state(delta):
 func attack_state(_delta):
 	animation_state.travel("Attack")
 
+
 func attack_animation_finished():
 	state = MOVE
+
 
 func roll_state(_delta):
 	velocity = roll_vector * ROLL_SPEED 
 	animation_state.travel("Roll")
 	move()
 
+
 func roll_animation_finished():
 	velocity =  velocity / 2
 	state = MOVE
+
+
+func _on_hurtBox_area_entered(_area):
+	stats.health -= 1
+	hurtBox.start_invincibility(0.75)
+	hurtBox.create_hit_effect()

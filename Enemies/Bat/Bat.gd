@@ -16,14 +16,15 @@ var state = CHASE
 onready var sprite = $AnimatedSprite
 onready var stats = $Stats
 onready var playerDetectionZone = $PlayerDectionZone
+onready var hurtBox = $hurtBox
 
 var velocity = Vector2.ZERO
-var knockBack = Vector2.ZERO
+var knockback = Vector2.ZERO
 
 
 func _physics_process(delta):
-	knockBack = knockBack.move_toward(Vector2.ZERO, FRICTION * delta)
-	knockBack = move_and_slide(knockBack)
+	knockback = knockback.move_toward(Vector2.ZERO, FRICTION * delta)
+	knockback = move_and_slide(knockback)
 	
 	match state:
 		IDLE:
@@ -50,7 +51,9 @@ func seek_player():
 
 func _on_hurtBox_area_entered(area):
 	stats.health -= area.damage
-	knockBack = area.knockback_vector * 120
+	hurtBox.start_invincibility(0.5)
+	knockback = area.knockback_vector * 150
+	hurtBox.create_hit_effect()
 
 
 func _no_health():
