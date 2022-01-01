@@ -2,8 +2,8 @@ extends KinematicBody2D
 
 const EnemyDeathEffect = preload("res://Effects/EnemyDeathEffect/EnemyDeathEffect.tscn")
 
-export var ACCELERATION = 300
-export var MAX_SPEED = 50
+export var ACCELERATION = 200
+export var MAX_SPEED = 40
 export var FRICTION = 200
 
 enum {
