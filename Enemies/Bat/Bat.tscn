@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Enemies/Bat/Bat.png" type="Texture" id=1]
 [ext_resource path="res://Shadows/SmallShadow.png" type="Texture" id=2]
@@ -9,6 +9,12 @@
 [ext_resource path="res://Overlap/hitBox.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Overlap/softCollision.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Enemies/wanderController.tscn" type="PackedScene" id=9]
+[ext_resource path="res://shaders/white_shader.tres" type="Shader" id=10]
+
+[sub_resource type="ShaderMaterial" id=16]
+resource_local_to_scene = true
+shader = ExtResource( 10 )
+shader_param/active = false
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )
@@ -53,11 +59,60 @@ radius = 5.09902
 [sub_resource type="CircleShape2D" id=11]
 radius = 4.0
 
+[sub_resource type="Animation" id=17]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:material:shader_param/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=14]
+resource_name = "end"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:material:render_priority")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=15]
+resource_name = "start"
+length = 0.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:material:shader_param/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
 [node name="Bat" type="KinematicBody2D"]
 collision_layer = 4
 script = ExtResource( 3 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+material = SubResource( 16 )
 frames = SubResource( 6 )
 frame = 4
 playing = true
@@ -102,8 +157,15 @@ shape = SubResource( 11 )
 
 [node name="wanderController" parent="." instance=ExtResource( 9 )]
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 17 )
+anims/end = SubResource( 14 )
+anims/start = SubResource( 15 )
+
 [connection signal="no_health" from="Stats" to="." method="_no_health"]
 [connection signal="area_entered" from="hurtBox" to="." method="_on_hurtBox_area_entered"]
+[connection signal="invincibility_ended" from="hurtBox" to="." method="_on_hurtBox_invincibility_ended"]
+[connection signal="invincibility_started" from="hurtBox" to="." method="_on_hurtBox_invincibility_started"]
 
 [editable path="PlayerDectionZone"]
 [editable path="hurtBox"]
