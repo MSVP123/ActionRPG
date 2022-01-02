@@ -18,6 +18,7 @@ onready var stats = $Stats
 onready var playerDetectionZone = $PlayerDectionZone
 onready var hurtBox = $hurtBox
 onready var softCollisiotn = $softCollision
+onready var wanderContoller = $wanderController
 
 var velocity = Vector2.ZERO
 var knockback = Vector2.ZERO
@@ -31,25 +32,55 @@ func _physics_process(delta):
 		IDLE:
 			velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
 			seek_player()
-		WANDER:
-			pass
 			
+			if wanderContoller.get_time_left() == 0:
+				update_wander()
+		WANDER:
+			seek_player()
+			
+			if wanderContoller.get_time_left() == 0:
+				update_wander()
+			
+			
+			accelerate_toward_point(wanderContoller.target_position, delta)
+			
+			if global_position.distance_to(wanderContoller.target_position) <= MAX_SPEED * delta * 2:
+				update_wander()
+				
+			sprite.flip_h = velocity.x < 0
 		CHASE:
 			var player = playerDetectionZone.player
 			if player != null:
-				var direction = (player.global_position - global_position).normalized()
-				velocity = velocity.move_toward(direction * MAX_SPEED, ACCELERATION * delta)
+				accelerate_toward_point(player.global_position, delta)
 			else:
 				state = IDLE
-			sprite.flip_h = velocity.x < 0
+			
 	if softCollisiotn.is_colliding():
 		velocity += softCollisiotn.get_push_vector() * delta * 400
+	
+
 	velocity = move_and_slide(velocity)
+
+
+func accelerate_toward_point(point, delta):
+	var direction = global_position.direction_to(point)
+	velocity = velocity.move_toward(direction * MAX_SPEED, ACCELERATION * delta)
+	sprite.flip_h = velocity.x < 0
+
+
+func update_wander():
+		state = pick_random_state([WANDER, IDLE])
+		wanderContoller.start_timer(rand_range(1, 2))
 
 
 func seek_player():
 	if playerDetectionZone.can_see_player():
 		state = CHASE
+
+
+func pick_random_state(state_list):
+	state_list.shuffle()
+	return state_list.pop_front()
 
 
 func _on_hurtBox_area_entered(area):
